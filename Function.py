@@ -2,6 +2,7 @@
 import datetime
 import inspect
 import os.path
+from Configure import *
 
 
 def logError(info: str):
@@ -48,7 +49,7 @@ def getReceiver():
     获取name 和 email的关系
     :return:
     """
-    filePath = os.path.join(os.getcwd(), CoursePDF, "nameEmail.json")
+    filePath = os.path.join(os.getcwd(), "nameEmail.json")
     try:
         with open(filePath, "r", encoding="utf-8") as f:
             receiver = json.load(f)

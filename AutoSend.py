@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/python3
 import os.path
 import smtplib
@@ -137,8 +138,9 @@ def sendProcess(sendMessage, receiver):
 
 
 def sendTask():
-    Receiver = getReceiver
-    for name in Receivers.keys():
+    Receiver = getReceiver()
+    # print(Receiver)
+    for name in Receiver.keys():
         try:
             filePath = os.path.join(os.getcwd(), CoursePDF, name + ".json")
             with open(filePath, "r", encoding="utf-8") as f:
@@ -146,15 +148,16 @@ def sendTask():
         except:
             pdfToText(name)
 
-    for name in Receivers.keys():
+    for name in Receiver.keys():
         massage = dealInformation(name)
         if massage:
             # 单开一个线程进行邮件发送
-            threading.Thread(target=sendProcess, args=("\n\n\n".join(massage), Receivers[name])).start()
+            threading.Thread(target=sendProcess, args=("\n\n\n".join(massage), Receiver[name])).start()
 
 
 def startEmail():
-    while True:
+    # sendTask()
+    while 1:
         try:
             schedule.every().day.at(NoticeTime).do(sendTask)
             while True:
