@@ -1,0 +1,16 @@
+# 忽略 Python 字节码
+.idea
+__pycache__/
+*.pyc
+.git
+
+# 忽略虚拟环境
+venv/
+.env
+
+# 忽略日志文件
+*.log
+
+*.pdf
+*.json
+
